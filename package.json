@@ -1,0 +1,17 @@
+{
+  "name": "sequence",
+  "version": "5.5.2",
+  "main": "index.js",
+  "license": "MIT",
+  "kibana": {
+    "version": "5.5.2"
+  },
+  "build": {
+    "git": {
+      "count": "15443",
+      "sha": "3352f6010",
+      "date": "Fri, 11 Aug 2017 19:17:35 -0400"
+    },
+    "date": "Sun Sep 10 2017 15:11:43 GMT+0200 (CEST)"
+  }
+}
