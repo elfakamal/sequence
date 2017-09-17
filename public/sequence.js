@@ -1,8 +1,8 @@
 import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
 import { TemplateVisTypeProvider } from 'ui/template_vis_type/template_vis_type';
 
-import './assets/sequence.css';
 import './less/main.less';
+import './assets/sequence.css';
 import 'plugins/sequence/sequence_controller';
 
 // register the provider with the visTypes registry
