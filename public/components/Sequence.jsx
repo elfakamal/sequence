@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Entity from './Entity';
 import Relations from './Relations';
+import Modal from './Modal';
 import {
   PADDING,
   DEFAULT_SEQUENCE_WIDTH,
@@ -24,19 +25,28 @@ export default class Sequence extends React.Component {
       PropTypes.string,
     ]).isRequired,
     schema: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    onSelected: PropTypes.func,
   };
 
   static defaultProps = {
     width: DEFAULT_SEQUENCE_WIDTH,
     height: DEFAULT_SEQUENCE_HEIGHT,
     schema: [],
-    onSelected: () => {},
   };
+
+  constructor(props) {
+    super(props);
+
+    this.onSelected = this.onSelected.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.updateEntityBoxes = this.updateEntityBoxes.bind(this);
+    this.updateEntityPositions = this.updateEntityPositions.bind(this);
+    this.calculateEntityTreatments = this.calculateEntityTreatments.bind(this);
+  }
 
   state = {
     containerX: 0,
     schema: {},
+    selected: undefined,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -130,6 +140,14 @@ export default class Sequence extends React.Component {
     });
   }
 
+  closeModal() {
+    this.setState({ selected: undefined });
+  }
+
+  onSelected(item) {
+    this.setState({ selected: item });
+  }
+
   render() {
     const {
       positions = [],
@@ -138,6 +156,7 @@ export default class Sequence extends React.Component {
         entities = [],
         relations = [],
       } = {},
+      selected,
     } = this.state;
 
     const containerX = 10;
@@ -151,74 +170,93 @@ export default class Sequence extends React.Component {
       return '100%';
     })();
 
-    const { onSelected } = this.props;
     let { height } = this.props;
 
     if (this.props.height === 0) {
       height = DEFAULT_SEQUENCE_HEIGHT;
     }
 
+    const modalWidth = (width * 70) / 100;
+    const modalHeight = (height * 70) / 100;
+
     return (
-      <svg
-        ref={element => { this.svg = element; }}
-        width={width}
-        height={height}
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{
-          paddingTop: 10,
-          backgroundColor: '#fff',
-        }}
-      >
-        <defs>
-          <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="10" refY="6" orient="auto">
-            <path d="M2,2 L2,11 L10,6 L2,2" style={{ fill: '#000000' }} />
-          </marker>
-        </defs>
+      <div style={{ position: 'relative' }}>
+        <svg
+          ref={element => { this.svg = element; }}
+          width={width}
+          height={height}
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            paddingTop: 10,
+            backgroundColor: '#fff',
+          }}
+        >
+          <defs>
+            <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="10" refY="6" orient="auto">
+              <path d="M2,2 L2,11 L10,6 L2,2" style={{ fill: '#000000' }} />
+            </marker>
+          </defs>
 
-        <g transform={`translate(${containerX})`}>
-          {entities.map((name, index) => {
-            let entityRelations = [];
+          <g transform={`translate(${containerX})`}>
+            {entities.map((name, index) => {
+              let entityRelations = [];
 
-            if (index > 0) {
-              entityRelations = relations.reduce((acc, rel, relIndex) => {
-                if (rel.from === name || rel.to === name) {
-                  return acc.concat({ ...rel, index: relIndex });
-                }
+              if (index > 0) {
+                entityRelations = relations.reduce((acc, rel, relIndex) => {
+                  if (rel.from === name || rel.to === name) {
+                    return acc.concat({ ...rel, index: relIndex });
+                  }
 
-                return acc;
-              }, []);
-            }
+                  return acc;
+                }, []);
+              }
 
-            return (
-              <Entity
-                {...{
-                  height,
-                  entityRelations,
-                  key: index,
-                  text: name,
-                  treatments: this.calculateEntityTreatments(entityRelations),
-                  x: positions ? positions[index] : 0,
-                  onSizeUpdated: box => {
-                    this.updateEntityBoxes(index, box);
-                  },
-                }}
-              />
-            );
-          })}
+              return (
+                <Entity
+                  {...{
+                    height,
+                    entityRelations,
+                    key: index,
+                    text: name,
+                    onSelected: this.onSelected,
+                    treatments: this.calculateEntityTreatments(entityRelations),
+                    x: positions ? positions[index] : 0,
+                    onSizeUpdated: box => {
+                      this.updateEntityBoxes(index, box);
+                    },
+                  }}
+                />
+              );
+            })}
 
-          <Relations
-            {...{
-              entities,
-              relations,
-              positions,
-              height,
-              boxes: this.boxes,
-              onSelected,
+            <Relations
+              {...{
+                entities,
+                relations,
+                positions,
+                height,
+                boxes: this.boxes,
+                onSelected: this.onSelected,
+              }}
+            />
+          </g>
+        </svg>
+        {selected && (
+          <Modal
+            selected={selected}
+            close={this.closeModal}
+            style={{
+              position: 'absolute',
+              width: modalWidth,
+              height: modalHeight,
+              overflowY: 'auto',
+              top: height / 2 - modalHeight / 2 - 11,
+              left: width / 2 - modalWidth / 2 - 11,
             }}
           />
-        </g>
-      </svg>
+        )}
+      </div>
     );
   }
 }

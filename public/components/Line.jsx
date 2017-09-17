@@ -22,8 +22,6 @@ export default class Line extends React.Component {
     if (this.props.onClick) {
       this.props.onClick();
     }
-
-    console.log('click');
   }
 
   render() {

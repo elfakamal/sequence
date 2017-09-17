@@ -11,26 +11,7 @@ app.directive('sequenceVisualization', () => {
   return {
     restrict: 'E',
     link: ($scope, $el) => {
-      console.log('scope', $scope);
-      console.log('width', $el);
-      console.log('width', $el[0].parentElement);
-      console.log('width', $el[0].parentElement.offsetWidth);
-      console.log('height', $el[0].parentElement.offsetHeight);
       $scope.height = $el[0].parentElement.offsetHeight;
-
-      // $scope.$on('renderComplete', () => {
-      //   console.log('render complete');
-      // });
-
-      // $el[0].parentElement.addEventListener('resize', () => {
-      //   console.log('watch width', $el[0].parentElement.offsetWidth);
-      //   console.log('watch height', $el[0].parentElement.offsetHeight);
-      // });
-
-      $scope.$on('globalNav:update', () => {
-        console.log('watch width', $el[0].parentElement.offsetWidth);
-        console.log('watch height', $el[0].parentElement.offsetHeight);
-      });
 
       const addToState = ['schema', 'height'];
       const Component = addScope(Sequence, $scope, addToState);

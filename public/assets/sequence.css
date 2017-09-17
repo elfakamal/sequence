@@ -17,3 +17,34 @@
 .sequence .line-placeholder:hover {
   stroke: slategrey;
 }
+
+.sequence-modal {
+  background-color: rgba(220, 220, 220, 0.8);
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.sequence-modal-header {
+  text-align: right;
+}
+
+.sequence-modal-header button {
+  border: none;
+}
+
+.sequence-modal-body-details-entry .entry-key,
+.sequence-modal-body-details-entry .entry-value {
+  font-family: Courier New, Courier, monospace;
+  margin-right: 5px;
+}
+
+.sequence-modal-body-details-entry .entry-value {
+  background-color: beige;
+  color: initial;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.sequence-modal-body-details-entry pre {
+  background-color: beige;
+}
