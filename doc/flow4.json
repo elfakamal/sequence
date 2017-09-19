@@ -1,0 +1,14 @@
+    {
+        "@timestamp": "2017-09-19T15:45:31.607Z",
+        "message": "response",
+        "from": "toto-customer-command",
+        "to": "toto-customer-query",
+        "X-B3-TraceId": "fc13484828b2f1a6",
+        "X-B3-SpanId": "fc13484828b2f1a6",
+        "X-B3-ParentSpanId": "fc13484828b2f1a6",
+        "verb": "POST",
+        "url": "http://10.42.142.238:8086/api/v1/customer",
+        "status-code": "201",
+        "payload": "",
+        "elapsed_time": "40"
+    }

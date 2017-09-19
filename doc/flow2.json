@@ -1,0 +1,14 @@
+{
+        "@timestamp": "2017-09-19T15:45:31.558Z",
+        "message": "response",
+        "from": "toto-customer-command",
+        "to": "toto-agency-query",
+        "X-B3-TraceId": "fc13484828b2f1a6",
+        "X-B3-SpanId": "fc13484828b2f1a6",
+        "X-B3-ParentSpanId": "fc13484828b2f1a6",
+        "verb": "GET",
+        "url": "http://10.42.60.71:8083/api/v1/agencies?ids=2006",
+        "status-code": "200",
+        "payload": "[{\"id\":\"2006\",\"sgdbfBrandId\":\"59006e6aba42c88fb76d9963\",\"agencyName\":\"TOULOUSE L' UNION CLIM+\",\"agencyShortName\":null,\"coordinates\":{\"phoneNumber\":\"05 62 89 48 94\",\"fax\":\"05 62 89 48 91\",\"email\":\"CLIMUNION@SAINT-GOBAIN.COM\"},\"address\":{\"position\":{\"longitude\":43.651157,\"latitude\":1.471412},\"postalName\":\"L UNION\",\"street\":[\"41 ROUTE DE BESSIERES\"],\"zipCode\":\"31240\",\"city\":\"\",\"department\":\"Haute-Garonne\",\"region\":\"unknown\"},\"links\":[{\"rel\":\"self\",\"href\":\"http://10.42.60.71:8083/api/v1/agencies/2006\"}],\"agencySEO\":\"/infos-agence/toulouse-l-union-clim-2006\"}]",
+        "elapsed_time": "12"
+}

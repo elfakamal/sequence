@@ -1,0 +1,12 @@
+ {
+        "@timestamp": "2017-09-19T15:45:31.566Z",
+        "message": "request",
+        "from": "toto-customer-command",
+        "to": "toto-customer-query",
+        "X-B3-TraceId": "fc13484828b2f1a6",
+        "X-B3-SpanId": "fc13484828b2f1a6",
+        "X-B3-ParentSpanId": "fc13484828b2f1a6",
+        "verb": "POST",
+        "url": "http://toto-customer-query/api/v1/customer",
+        "payload": "{\"_id\":\"5930369b12f11200381043e9\",\"websiteId\":\"59006b41ba42c88fb76d9961\",\"email\":\"test_2017-09-19_174531@yopmail.com\",\"username\":null,\"requiredConstructionSite\":null,\"gender\":\"MR\",\"firstName\":\"first name\",\"lastName\":\"last name\",\"phoneNumber\":\"01 23 45 67 89\",\"mobileNumber\":\"06 12 34 57 89\",\"fax\":\"02 13 45 67 89\",\"address\":\"21 rue test\",\"zipCode\":92700,\"city\":\"COLOMBES\",\"companyName\":\"company name\",\"companySIREN\":123456789,\"profession\":{\"_id\":\"1000\",\"name\":\"profession\"},\"relatedAgency\":null,\"invoicingType\":null,\"requiredOrderRef\":null,\"defAgencyId\":\"2006\",\"pricingClass\":null,\"isCustomer\":null,\"relatedAgencies\":null,\"legacyCustomerAdminCode\":null,\"legacyCustomerID\":null,\"newsletter\":[{\"_id\":\"1000\",\"name\":\"newsletter\",\"description\":\"newsletter\"}],\"canOrder\":null}"
+    }
