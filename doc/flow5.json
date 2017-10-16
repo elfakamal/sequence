@@ -1,13 +1,12 @@
 {
-
-        "@timestamp": "2017-09-19T15:45:31.608Z",
-        "message": "request",
-        "from": "toto-customer-command",
-        "to": "toto-user-command",
-        "X-B3-TraceId": "fc13484828b2f1a6",
-        "X-B3-SpanId": "fc13484828b2f1a6",
-        "X-B3-ParentSpanId": "fc13484828b2f1a6",
-        "verb": "POST",
-        "url": "http://toto-user-command/api/v1/user",
-        "payload": "{\"email\":\"test_2017-09-19_174531@yopmail.com\",\"password\":\"1234567.\",\"roles\":\"ROLE_VI\"}"
-    }
+    "@timestamp": "2017-09-19T15:45:31.608Z",
+    "message": "request",
+    "from": "toto-customer-command",
+    "to": "toto-user-command",
+    "X-B3-TraceId": "fc13484828b2f1a6",
+    "X-B3-SpanId": "fc13484828b2f1a6",
+    "X-B3-ParentSpanId": "fc13484828b2f1a6",
+    "verb": "POST",
+    "url": "http://toto-user-command/api/v1/user",
+    "payload": "{\"email\":\"test_2017-09-19_174531@yopmail.com\",\"password\":\"1234567.\",\"roles\":\"ROLE_VI\"}"
+}

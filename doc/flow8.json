@@ -9,6 +9,5 @@
         "verb": "POST",
         "url": "http://10.42.229.15:8088/api/v1/user",
         "status-code": "201",
-        "elapsed_time": "189",
-
-      
+        "elapsed_time": "189"
+}

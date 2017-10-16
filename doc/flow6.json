@@ -1,12 +1,12 @@
 {
-        "@timestamp": "2017-09-19T15:45:31.739Z",
-        "message": "request",
-        "from": "toto-user-command",
-        "to": "toto-user-query",
-        "X-B3-TraceId": "fc13484828b2f1a6",
-        "X-B3-SpanId": "b86ff659bc81fe39",
-        "X-B3-ParentSpanId": "fc13484828b2f1a6",
-        "verb": "POST",
-        "url": "http://toto-user-query/api/v1/user",
-        "payload": "{\"username\":\"test_2017-09-19_174531@yopmail.com\",\"password\":\"$2a$10$JK.PhkotkV2G/5bxqhdFT.rCYuxXMKXG6hgmWs1d47KxTSxuVTiea\",\"authorities\":\"ROLE_VI\",\"_id\":\"5930369b644df90038f09b9e\"}"
-    }
+    "@timestamp": "2017-09-19T15:45:31.739Z",
+    "message": "request",
+    "from": "toto-user-command",
+    "to": "toto-user-query",
+    "X-B3-TraceId": "fc13484828b2f1a6",
+    "X-B3-SpanId": "b86ff659bc81fe39",
+    "X-B3-ParentSpanId": "fc13484828b2f1a6",
+    "verb": "POST",
+    "url": "http://toto-user-query/api/v1/user",
+    "payload": "{\"username\":\"test_2017-09-19_174531@yopmail.com\",\"password\":\"$2a$10$JK.PhkotkV2G/5bxqhdFT.rCYuxXMKXG6hgmWs1d47KxTSxuVTiea\",\"authorities\":\"ROLE_VI\",\"_id\":\"5930369b644df90038f09b9e\"}"
+}
