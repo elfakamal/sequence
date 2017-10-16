@@ -12,7 +12,7 @@ import {
   RELATION_GAP,
 } from '../constants';
 
-import { formatSchema } from '../helpers';
+import { formatSchema, getEntityPairs } from '../helpers';
 
 export default class Sequence extends React.Component {
   static propTypes = {
@@ -50,7 +50,11 @@ export default class Sequence extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ schema: formatSchema(nextProps.schema || {}) });
+    // console.log('pairs', this.getEntityPairs(nextProps.schema));
+
+    this.setState({
+      schema: formatSchema(nextProps.schema || []),
+    });
   }
 
   updateEntityBoxes(index, box) {
@@ -114,17 +118,7 @@ export default class Sequence extends React.Component {
       return;
     }
 
-    const groups = entityRelations.reduce((acc, rel) => {
-      const { from, to } = rel;
-      const key = `${from}::${to}`;
-
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-
-      acc[key].push(rel);
-      return acc;
-    }, {});
+    const groups = getEntityPairs(entityRelations);
 
     return Object.keys(groups).map(keyString => {
       const treatmentBox = {};
@@ -251,7 +245,7 @@ export default class Sequence extends React.Component {
               width: modalWidth,
               height: modalHeight,
               overflowY: 'auto',
-              top: height / 2 - modalHeight / 2 - 11,
+              top: height / 2 - modalHeight / 2 - 1,
               left: width / 2 - modalWidth / 2 - 11,
             }}
           />

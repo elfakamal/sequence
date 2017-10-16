@@ -1,4 +1,4 @@
-import schema from './flow.json';
+import schema from './flow2.json';
 
 export default server => {
   // We can use this method, since we have set the require in the index.js to
