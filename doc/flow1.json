@@ -1,0 +1,12 @@
+{
+        "@timestamp": "2017-09-19T15:45:31.544Z",
+        "message": "request",
+        "from": "toto-customer-command",
+        "to":"toto-agency-query",
+        "X-B3-TraceId": "fc13484828b2f1a6",
+        "X-B3-SpanId": "fc13484828b2f1a6",
+        "X-B3-ParentSpanId": "287c86351fbed001",
+        "verb": "GET",
+        "url": "http://toto-agency-query/api/v1/agencies?ids=2006",
+        "payload": ""
+}
