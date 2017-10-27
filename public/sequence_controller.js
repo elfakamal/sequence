@@ -7,6 +7,10 @@ import 'plugins/sequence/directives/sequenceVisualization';
 const module = uiModules.get('kibana/sequence', ['kibana']);
 
 module.controller('SequenceController', function ($scope, $http, Private) {
+  // $http.get('../api/sequence/schema').then((response) => {
+  //   $scope.schema = response.data;
+  // });
+
   const tabifyAggResponse = Private(AggResponseTabifyProvider);
 
   var metrics = $scope.metrics = [];
@@ -47,8 +51,8 @@ module.controller('SequenceController', function ($scope, $http, Private) {
       }
 
     }
-    console.log(JSON.stringify(result));
-    $scope.schema = JSON.stringify(result);
+    console.log(result);
+    $scope.schema = result;
   };
 
   $scope.$watch('esResponse', function (resp) {

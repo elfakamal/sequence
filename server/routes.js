@@ -57,7 +57,24 @@ export default server => {
     path: '/api/sequence/schema',
     method: 'GET',
     handler(req, reply) {
-      reply(schema);
+      call(req, 'search', { index: 'flow' }).then(function (response) {
+        // Return just the names of all indices to the client.
+        const { hits: { hits } } = response;
+        const flow = hits.map(hit => hit._source);
+        console.log(response);
+        console.log(hits);
+
+        reply(flow);
+      });
     }
   });
+
+  // server.route({
+  //   path: '/api/sequence/schema',
+  //   method: 'GET',
+  //   handler(req, reply) {
+  //     console.log(schema);
+  //     reply(schema);
+  //   }
+  // });
 };
