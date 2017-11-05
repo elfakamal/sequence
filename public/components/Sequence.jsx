@@ -50,8 +50,6 @@ export default class Sequence extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // console.log('pairs', this.getEntityPairs(nextProps.schema));
-
     this.setState({
       schema: formatSchema(nextProps.schema || []),
     });
@@ -123,7 +121,13 @@ export default class Sequence extends React.Component {
     return Object.keys(groups).map(keyString => {
       const treatmentBox = {};
       const relation1Index = groups[keyString][0].index;
-      const relation2Index = groups[keyString][1].index;
+
+      // handling the absence of relation 2
+      let relation2Index = relation1Index;
+
+      if (groups[keyString] && groups[keyString][1] && groups[keyString][1].index) {
+        relation2Index = groups[keyString][1].index;
+      }
 
       treatmentBox.x = 0;
       treatmentBox.y = relationsOffset + (relation1Index * RELATION_GAP) - 5;

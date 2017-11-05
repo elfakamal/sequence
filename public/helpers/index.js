@@ -1,3 +1,6 @@
+import moment from 'moment';
+import lodash from 'lodash';
+
 export const getEntityPairs = relations => (
   relations.reduce((acc, relation) => {
     const { from, to } = relation;
@@ -12,13 +15,16 @@ export const getEntityPairs = relations => (
   }, {})
 );
 
+const sortBy = lodash.sortByAll ? lodash.sortByAll : lodash.sortBy;
+
+const timePredicate = (flow) => moment(flow['@timestamp']).valueOf();
+const messagePredicate = (flow) => flow.message !== 'request';
+
 export const formatSchema = (schema = []) => {
-  console.log('SCHEMA', schema);
+  const relations = sortBy(schema, [timePredicate, messagePredicate]);
 
   return ({
-    // relations: Object.values(getEntityPairs(schema))
-    //   .reduce((acc, pair) => acc.concat(pair), []),
-    relations: schema,
+    relations,
     entities: Object.keys(schema.reduce((acc, relation) => (
       { ...acc, [relation.from]: true, [relation.to]: true }
     ), {})),
