@@ -24,7 +24,7 @@ const Relations = props => {
   return (
     <g>
       {positions && relations.map((relation, index) => {
-        const { from, to, message } = relation;
+        const { from, to, message, status } = relation;
         const fromIndex = entities.indexOf(from);
         const toIndex = entities.indexOf(to);
         const relationY = relationsOffset + RELATION_GAP * index;
@@ -70,6 +70,7 @@ const Relations = props => {
             start={fromPoint}
             end={toPoint}
             dashed={dashed}
+            status={status}
             markerEnd="url(#markerArrow)"
             onClick={() => onSelected(relation)}
           />

@@ -8,6 +8,7 @@ export default class Line extends React.Component {
     dashed: PropTypes.bool,
     markerStart: PropTypes.string,
     markerEnd: PropTypes.string,
+    status: PropTypes.number,
   };
 
   constructor(props) {
@@ -24,8 +25,26 @@ export default class Line extends React.Component {
     }
   }
 
+  getColor(status) {
+    if (!status) {
+      return 'gray';
+    }
+
+    if (status >= 500) {
+      return 'red';
+    }
+
+    if (status >= 400) {
+      return 'orange';
+    }
+
+    if (status >= 200) {
+      return 'green';
+    }
+  }
+
   render() {
-    const { start, end, dashed, markerStart, markerEnd } = this.props;
+    const { start, end, dashed, markerStart, markerEnd, status } = this.props;
     const lineProps = {};
     const lineStyle = {};
 
@@ -51,7 +70,7 @@ export default class Line extends React.Component {
           className="line"
           style={{
             ...lineStyle,
-            stroke: 'gray',
+            stroke: this.getColor(status),
             strokeWidth: 1,
           }}
           {...lineProps}
