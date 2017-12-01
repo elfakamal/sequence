@@ -15,12 +15,15 @@ module.controller('SequenceController', function ($scope, $http, Private) {
 
   var metrics = $scope.metrics = [];
   var result;
-  var Flow = function (timestamp, from, to, url, message) {
+  var Flow = function (timestamp, from, to, url, message,verb, status, payload) {
     this.timestamp = timestamp;
     this.from = from;
     this.to = to;
     this.url = url;
     this.message = message;
+    this.verb = verb;
+    this.status = status;
+    this.payload = payload;
   };
 
   var timestamp;
@@ -28,8 +31,13 @@ module.controller('SequenceController', function ($scope, $http, Private) {
   var to;
   var message;
   var url;
+  var payload;
+  var verb;
+  var status;
 
   $scope.processTableGroups = function (tableGroups) {
+    console.log(tableGroups);
+
     for (var i = 0; i < tableGroups.tables[0].rows.length; i++) {
       for (var j = 0; j < tableGroups.tables[0].rows[i].length; j++) {
         if ( j == 0 ) {
@@ -46,7 +54,16 @@ module.controller('SequenceController', function ($scope, $http, Private) {
         }
         if ( j == 4 ) {
           message = tableGroups.tables[0].rows[i][j].key;
-          result[i] = new Flow(timestamp,from,to,url,message) ;
+        }
+        if ( j == 5 ) {
+          verb = tableGroups.tables[0].rows[i][j].key;
+        }
+        if ( j == 6 ) {
+          status = tableGroups.tables[0].rows[i][j].key;
+        }
+        if ( j == 7 ) {
+          payload = tableGroups.tables[0].rows[i][j].key;
+          result[i] = new Flow(timestamp,from,to,url,message,verb, status, payload);
         }
       }
 

@@ -17,10 +17,11 @@ export const getEntityPairs = relations => (
 
 const sortBy = lodash.sortByAll ? lodash.sortByAll : lodash.sortBy;
 
-const timePredicate = (flow) => moment(flow['@timestamp']).valueOf();
-const messagePredicate = (flow) => flow.message !== 'request';
+const timePredicate = (flow) => moment(flow['timestamp']).valueOf();
+const messagePredicate = (flow) => flow.message !== 'response';
 
 export const formatSchema = (schema = []) => {
+  console.log('schema', schema);
   const relations = sortBy(schema, [timePredicate, messagePredicate]);
 
   return ({
